@@ -8,6 +8,8 @@ import 'firebase/auth';
 * thats the reason we dont have this line in the main.js, we only have
 * the firebase/app to initialize the app. */
 
+import mushroomList from '../../components/mushroomList/mushroomList';
+
 const authDiv = $('#auth');
 const forestDiv = $('#forest');
 const logoutButton = $('#navbar-logout-button');
@@ -18,14 +20,13 @@ const checkLoginStatus = () => {
       authDiv.addClass('hide');
       forestDiv.removeClass('hide');
       logoutButton.removeClass('hide');
+      mushroomList.buildForest();
     } else {
       authDiv.removeClass('hide');
       forestDiv.addClass('hide');
       logoutButton.addClass('hide');
     }
   });
-  // if the user is logged in: show mushrooms, hide login btn, show logout btn
-  // else do the opposite
 };
 
 export default { checkLoginStatus };

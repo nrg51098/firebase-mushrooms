@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+body {
+  background-color: darken($color: blue, $amount: 6);
+}
+
+.hide {
+  display: none;
+}

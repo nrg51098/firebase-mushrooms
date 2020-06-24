@@ -9,9 +9,11 @@ import 'firebase/auth';
 * the firebase/app to initialize the app. */
 
 import mushroomList from '../../components/mushroomList/mushroomList';
+import mycoList from '../../components/mycoList/mycoList';
 
 const authDiv = $('#auth');
 const forestDiv = $('#forest');
+const hutsDiv = $('#huts');
 const logoutButton = $('#navbar-logout-button');
 
 const checkLoginStatus = () => {
@@ -19,8 +21,10 @@ const checkLoginStatus = () => {
     if (user) {
       authDiv.addClass('hide');
       forestDiv.removeClass('hide');
+      hutsDiv.removeClass('hide');
       logoutButton.removeClass('hide');
       mushroomList.buildForest();
+      mycoList.buildHut();
     } else {
       authDiv.removeClass('hide');
       forestDiv.addClass('hide');

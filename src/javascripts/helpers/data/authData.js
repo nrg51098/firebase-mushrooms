@@ -1,34 +1,39 @@
 import firebase from 'firebase/app';
-/** we are adding this to get the firebase module and from firebase library packages
-* when we installed the dependencies, we are importing only app module becuase
-* there are a lot of other modules that we dont want */
 import 'firebase/auth';
-/* this one we are just adding auth package on top of our firebase package
-* this we need only when we need to use the sign in or signout funcitaionality
-* thats the reason we dont have this line in the main.js, we only have
-* the firebase/app to initialize the app. */
 
 import mushroomList from '../../components/mushroomList/mushroomList';
-import mycoList from '../../components/mycoList/mycoList';
+import mycologistList from '../../components/mycologistList/mycologistList';
 
 const authDiv = $('#auth');
 const forestDiv = $('#forest');
-const hutsDiv = $('#huts');
+const hutDiv = $('#hut');
 const logoutButton = $('#navbar-logout-button');
+const singleMycoDiv = $('#single-myco');
+const newShroomDiv = $('#new-shroom');
+const editShroomDiv = $('#edit-shroom');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       authDiv.addClass('hide');
       forestDiv.removeClass('hide');
-      hutsDiv.removeClass('hide');
+      hutDiv.removeClass('hide');
+      singleMycoDiv.removeClass('hide');
       logoutButton.removeClass('hide');
+      newShroomDiv.removeClass('hide');
+      editShroomDiv.removeClass('hide');
+
       mushroomList.buildForest();
-      mycoList.buildHut();
+      mushroomList.forestEvents();
+      mycologistList.buildHut();
     } else {
       authDiv.removeClass('hide');
       forestDiv.addClass('hide');
+      hutDiv.addClass('hide');
+      singleMycoDiv.addClass('hide');
       logoutButton.addClass('hide');
+      newShroomDiv.addClass('hide');
+      editShroomDiv.addClass('hide');
     }
   });
 };
